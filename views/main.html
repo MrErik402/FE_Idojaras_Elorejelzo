@@ -1,0 +1,26 @@
+<h3 class="text-center">Adatfelvitel</h3>
+
+<div class="col12 col-lg-6 offset-lg-3">
+    <div class="form-floating mb-3">
+        <input type="date" class="form-control" id="dateField" placeholder="2025-05-07">
+        <label for="dateField">Dátum</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="number" class="form-control" id="minField" placeholder="nev@pelda.hu">
+        <label for="minField">Minimális hőmérséklet</label>
+    </div>
+    <div class="form-floating">
+        <input type="number" class="form-control" id="maxField" placeholder="Jelszó">
+        <label for="maxField">Maximális hőmérséklet</label>
+    </div>
+    <label for="weatherType" class="form-label">Időjárás típusa</label>
+    <input class="form-control" list="datalistOptions" id="weatherType" placeholder="Írj be a kereséshez">
+    <datalist id="datalistOptions">
+        <option value="Esős">
+        <option value="Havas">
+        <option value="Napos">
+        <option value="Felhős">
+        <option value="Zivataros">
+    </datalist>
+    <button type="button" class="btn btn-primary mt-3" id="weatherAddBTN" onclick="weatherAdd()">Adatfelvitel</button>
+</div>

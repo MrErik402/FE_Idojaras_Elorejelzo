@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Stíluslapok-->
+    <link rel="stylesheet" href="./assest/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./assest/css/style.css">
+    <title>Időjárás előrejelző</title>
+</head>
+<body>
+      <div class="container">
+        <header> 
+            <h4 class="text-center mt-3 mb-3" id="title"></h4>
+            <span id="themeSwitch" class="text-end">
+                <i class="bi bi-sun-fill" id="lightModeBTN"></i>
+                <i class="bi bi-moon-fill hide" id="darkModeBTN"></i>
+            </span>
+        </header>
+        <hr>
+        <nav class="navbar navbar-expand-lg mt-3">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Menü</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" >
+                <ul class="navbar-nav" id="mainMenu">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" onclick="render('login')">Bejelentkezés</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" onclick="render('register')">Regisztráció</a>
+                  </li>
+                </ul>
+                <ul class="navbar-nav hide" id="userMenu">
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" onclick="render('main')">Időjárás előrejelző</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" onclick="render('statistics')">Statisztika</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" onclick="render('calendar')">Naptár</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" onclick="render('profile')">Profilom</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" onclick="userLogout()">Kijelentkezés</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </nav>
+        <div id="alertBox" class="alert hide alert-dismissible fade show" role="alert">
+            <h5 id="alertTitle" class="fw-bold"></h5>
+            <span id="alertMessage"></span>
+            <button type="button" class="btn-close" aria-label="Close" onclick="hideAlert()"></button>
+        </div>
+        <hr>
+        <main>
+            <!--Ide jön a dinamikusan feltöltött oldal-->
+        </main>
+        <hr>
+        <footer class="text-end me-5 font-monospace">
+            <p class="fs-2" id="company"></p>
+            <p class="fs-3 fst-italic" id="author"></p>
+            <p class="fs-4">2025</p>
+        </footer>
+      </div>
+    <!--Assestek-->
+    <script src="./assest/js/bootstrap.min.js"></script>
+    <script src="./assest/js/app.js"></script>
+    <!--Controllerek-->
+    <script src="./controllers/alertCtrl.js"></script>
+    <script src="./controllers/usersCtrl.js"></script>
+    <script src="./controllers/weatherStatCtrl.js"></script>
+</body>
+</html>

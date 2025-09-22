@@ -1,0 +1,30 @@
+<h3 class="text-center">Profiladatok módosítása</h3>
+
+<div class="col-12 col-lg-6 offset-lg-3">
+    <div class="dataUpdate">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="nameField" placeholder="Teszt Elek">
+            <label for="nameField">Név</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="emailField" placeholder="nev@pelda.hu">
+            <label for="emailField">E-mail cím</label>
+        </div>
+        <button type="button" class="btn btn-primary mb-3" id="registerBTN" onclick="userProfileUpdate()">Módosítás</button>
+    </div>
+    <div class="passwordUpdate">
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="oldpasswordField" placeholder="Jelszó">
+            <label for="oldpasswordField">Régi jelszó</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="passwordField" placeholder="Jelszó">
+            <label for="passwordField">Új jelszó</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="confirmpasswordField" placeholder="Jelszó megerősítése">
+            <label for="confirmpasswordField">Új jelszó</label>
+        </div>
+        <button type="button" class="btn btn-primary" id="registerBTN" onclick="userPasswordUpdate()">Módosítás</button>
+    </div>
+</div>
