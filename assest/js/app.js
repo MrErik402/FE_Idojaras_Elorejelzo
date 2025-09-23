@@ -73,7 +73,18 @@ async function render(view){
         case "profile":
             getProfile()
             break;
-    
+        case "main":
+            setDateMin()
+            getWeatherDatas()
+            setButton()
+            break;
+        case "statistics":
+            setCanvasJS()
+            break;
+        case "calendar":
+            await getCalendarData()
+            initCalendar();
+            break;
         default:
             break;
     }

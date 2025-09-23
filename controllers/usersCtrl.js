@@ -181,4 +181,4 @@ async function userPasswordUpdate() {
     } catch (err) {
       showAlert("Hiba!", err.message, "danger");
     }
-  }
+}
