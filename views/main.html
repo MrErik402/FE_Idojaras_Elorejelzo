@@ -14,15 +14,14 @@
         <label for="maxField">Maximális hőmérséklet</label>
     </div>
     <label for="weatherType" class="form-label">Időjárás típusa</label>
-    <input class="form-control" list="datalistOptions" id="weatherType" placeholder="Írj be a kereséshez">
-    <datalist id="datalistOptions">
-        <option value="rainy">
-        <option value="cloudy">
-        <option value="sunny">
-        <option value="snow">
-        <option value="meteor">
-        <option value="lighting">
-    </datalist>
+    <select class="form-select" id="weatherType" aria-label="Default select example">
+        <option value="rainy">Esős</option>
+        <option value="cloudy">Felhős</option>
+        <option value="sunny">Napos</option>
+        <option value="snow">Havas</option>
+        <option value="meteor">Meteor eső</option>
+        <option value="lighting">Vihar</option>
+    </select>
     <button type="button" class="btn btn-primary mt-3" id="weatherBTN" onclick="weatherAdd()">Adatfelvitel</button>
     <button type="button" class="btn btn-info mt-3 hide" id="weatherEditBTN" onclick="weatherSave()">Módosítás</button>
 </div>
@@ -35,7 +34,7 @@
             <th class="text-end">Dátum</th>
             <th class="text-end">Minimum</th>
             <th class="text-end">Maximum</th>
-            <th>Típus</th>
+            <th class="text-center">Típus</th>
             <th>Műveletek</th>
         </tr>
     </thead>

@@ -1,5 +1,9 @@
-function setCanvasJS(){
-    let datas =[]
+function setCanvasJS() {
+    //Megnézzük, hogy az oldalon van-e chartContainer, ha nincs akkor nem csinálunk semmit
+    if (!document.getElementById("chartContainer")) {
+        return;
+    }
+    let datas = []
     weather = weather.sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
     weather.forEach(day => {
         datas.push({
@@ -8,13 +12,16 @@ function setCanvasJS(){
             name: day.type
         })
     });
+    //Itt eldöntjük, hogy éppen sötétmód van-e vagy sem
+    let selectedTheme = isDarkMode() ? "dark2" : "light2";
     var chart = new CanvasJS.Chart("chartContainer", {
+        theme: selectedTheme,
         title: {
             text: "Heti időjárás"
         },
         axisY: {
             suffix: " °C",
-            maximum: 40,
+            maximum: 60,
             gridThickness: 0
         },
         toolTip: {
@@ -24,13 +31,14 @@ function setCanvasJS(){
         data: [{
             type: "rangeSplineArea",
             fillOpacity: 0.1,
-		    color: "#91AAB1",
+            color: "#487FD9",
             indexLabelFormatter: formatter,
             dataPoints: datas
-        }]
+        }],
+        animationEnabled: true,
+        animationDuration: 2000
     });
     chart.render();
-
     var images = [];
 
     addImages(chart);
@@ -39,7 +47,7 @@ function setCanvasJS(){
         for (var i = 0; i < chart.data[0].dataPoints.length; i++) {
             var dpsName = chart.data[0].dataPoints[i].name;
             if (dpsName == "cloudy") {
-                images.push($("<img>").attr("src", "../assest/img/weather/clouds.png"));
+                images.push($("<img>").attr("src", "../assest/img/weather/cloudy.png"));
             } else if (dpsName == "rainy") {
                 images.push($("<img>").attr("src", "../assest/img/weather/rainy.png"));
             } else if (dpsName == "sunny") {
@@ -61,7 +69,7 @@ function setCanvasJS(){
         var imageCenter = chart.axisX[0].convertValueToPixel(chart.data[0].dataPoints[index].x);
         var imageTop = chart.axisY[0].convertValueToPixel(chart.axisY[0].maximum);
 
-        image.width("40px")
+        image.width("25px")
             .css({
                 "left": imageCenter - 20 + "px",
                 "position": "absolute", "top": imageTop + "px",
@@ -94,4 +102,10 @@ function setCanvasJS(){
         }
     }
 
+}
+
+//Ezzel a függvénnyel ellenőrizzük le, hogy sötét mód van-e.
+function isDarkMode() {
+    const theme = document.documentElement.getAttribute('data-bs-theme') || 'light';
+    return theme === 'dark';
 }

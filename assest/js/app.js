@@ -12,63 +12,74 @@ document.querySelector('#company').innerHTML = COMPANY;
 document.querySelector('#author').innerHTML = AUTHOR;
 
 //Globális dokumentum elemek 
-let main = document.querySelector('main') 
+let main = document.querySelector('main')
 let mainNavbar = document.querySelector('#mainMenu')
 let userNavbar = document.querySelector('#userMenu')
 
-//Témaváltás
+/*----TÉMAVÁLTÁS----*/
 let theme = "dark"
 
-let darkBTN = document.querySelector('#darkModeBTN');
-let lightBTN = document.querySelector('#lightModeBTN');
+let lightmodeBTN = document.querySelector('#lightModeBTN');
+let darkmodeBTN = document.querySelector('#darkModeBTN');
 
-darkBTN.addEventListener('click', ()=>{
-    setTheme('dark')
-    saveTheme('dark')
-})
-lightBTN.addEventListener('click', ()=>{
-    setTheme('light')
-    saveTheme('light')
-})
 
-//Téma beállítása
-function setTheme(theme){
-    if (theme === 'auto') {
-        document.documentElement.setAttribute('data-bs-theme', (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
-    }else {
-        document.documentElement.setAttribute('data-bs-theme', theme)
-    }
-    setThemeButton(theme);
-}
+/*--Kattintás esemény--*/
+lightmodeBTN.addEventListener('click', () => {
+    setTheme('light');
+    saveTheme('light');
 
-//Téma mentése
-function saveTheme(theme){
-    localStorage.setItem('OldalTema', theme)
-}
+});
 
-//Téma betöltése
-function loadTheme(){
-    if(localStorage.getItem('OldalTema')){
-        theme = localStorage.getItem('OldalTema');
+darkmodeBTN.addEventListener('click', () => {
+    setTheme('dark');
+    saveTheme('dark');
+
+
+});
+
+/*--Betöltés--*/
+function loadTheme() {
+    if (localStorage.getItem('SCTheme')) {
+        theme = localStorage.getItem('SCTheme');
         saveTheme(theme);
-        
+
     }
     setTheme(theme);
 }
 
-//Témaváltó gombok váltakozása
-function setThemeButton(){
-    if(theme=='light'){
-        darkBTN.classList.remove("hide")
-        lightBTN.classList.add("hide")
-    }else{
-        darkBTN.classList.add("hide")
-        lightBTN.classList.remove("hide")
+/*--Mentés--*/
+function saveTheme(theme) {
+    localStorage.setItem('SCTheme', theme);
+}
+
+/*--Váltás--*/
+function setTheme(theme) {
+    if (theme === 'auto') {
+        document.documentElement.setAttribute('data-bs-theme', (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
+    } else {
+        document.documentElement.setAttribute('data-bs-theme', theme)
+    }
+    setThemeBTN(theme);
+    setCanvasJS() //Meghívjuk, hogy témaváltáskor frissüljön a chart
+
+}
+
+/*--Gombváltás--*/
+function setThemeBTN(theme) {
+    if (theme == 'light') {
+        lightmodeBTN.classList.add('hide');
+        darkmodeBTN.classList.remove('hide');
+    }
+    else {
+        lightmodeBTN.classList.remove('hide');
+        darkmodeBTN.classList.add('hide');
+
     }
 }
 
-async function render(view){
-    main.innerHTML = await(await fetch(`./views/${view}.html`)).text()
+/*--Dinamikus tartalom betöltés--*/
+async function render(view) {
+    main.innerHTML = await (await fetch(`./views/${view}.html`)).text()
     switch (view) {
         case "profile":
             getProfile()
@@ -91,19 +102,19 @@ async function render(view){
 }
 
 //Betölteni a sessionStorageből a loggedUser
-async function getLoggedUser(){
-    if(sessionStorage.getItem("loggedUser")){
+async function getLoggedUser() {
+    if (sessionStorage.getItem("loggedUser")) {
         loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
         mainNavbar.classList.add("hide")
         userNavbar.classList.remove("hide")
         await render("main")
-    }else{
+    } else {
         loggedUser = null
         mainNavbar.classList.remove("hide")
         userNavbar.classList.add("hide")
         await render("login")
     }
-    
+
 }
 
 getLoggedUser()

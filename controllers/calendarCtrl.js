@@ -1,35 +1,35 @@
 let eventsList = []
 
-async function getCalendarData(){
+async function getCalendarData() {
     chartLabels = []
     chartData = []
     try {
         eventsList = []
         let res = await fetch(`${ServerURL}/weather/${loggedUser.id}`);
         weather = await res.json();
-        
+
         weather.forEach(day => {
             eventsList.push(
-                {title: `Típus: ${day.type}`, start: day.date},
-                {title: `Min: ${day.min} °C`, start: day.date, backgroundColor: "green"},
-                {title: `Max: ${day.max} °C`, start: day.date, backgroundColor: "orange"},
+                { title: `Típus: ${day.type}`, start: day.date },
+                { title: `Min: ${day.min} °C`, start: day.date, backgroundColor: "green" },
+                { title: `Max: ${day.max} °C`, start: day.date, backgroundColor: "orange" },
 
             )
         });
     } catch (err) {
         console.log(err)
-        showAlert("Hiba!","Hiba az adatok lekérdezésében!", "danger")
+        showAlert("Hiba!", "Hiba az adatok lekérdezésében!", "danger")
     }
 }
-function initCalendar(){
+function initCalendar() {
     var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {  
+    var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         locale: 'hu',
         headerToolbar: {
             left: 'prev,today,next',
             center: 'title',
-            right: 'multiMonthYear,dayGridMonth,timeGridWeek,timeGridDay,listWeek' 
+            right: 'multiMonthYear,dayGridMonth,timeGridWeek,timeGridDay,listWeek'
         },
         events: eventsList
     });

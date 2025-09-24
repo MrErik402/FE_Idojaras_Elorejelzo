@@ -114,10 +114,6 @@ async function userProfileUpdate() {
             showAlert("Figyelmeztetés", "Nem adtál meg minden adatot!", "warning")
             return
         }
-        if(password.value != confirmPassword.value){
-            showAlert("Hiba", "Az általad megadott két jelszó nem egyezik!", "danger")
-            return;
-        }
         const res = await fetch(`${ServerURL}/users/profile`,{
             method: 'PATCH',
             headers: {
