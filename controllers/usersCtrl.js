@@ -114,6 +114,10 @@ async function userProfileUpdate() {
             showAlert("Figyelmeztetés", "Nem adtál meg minden adatot!", "warning")
             return
         }
+        if(!emailRegex.test(document.getElementById("emailField").value)){
+            showAlert("Figyelmeztetés", "Nem megfelelő e-mail formátum!", "warning")
+            return
+        }   
         const res = await fetch(`${ServerURL}/users/profile`,{
             method: 'PATCH',
             headers: {
