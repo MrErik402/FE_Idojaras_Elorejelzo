@@ -116,8 +116,8 @@ async function weatherRender() {
         /*---ÉRTÉKADÁS---*/
         td1.innerHTML = index + 1 + ".";
         td2.innerHTML = day.date;
-        td3.innerHTML = day.min;
-        td4.innerHTML = day.max;
+        td3.innerHTML = day.min+" °C";
+        td4.innerHTML = day.max+" °C";
         img.setAttribute("src", `../assest/img/weather/${day.type}.png`)
         editBTN.innerHTML = '<i class="bi bi-pencil-fill"></i>'
         delBTN.innerHTML = '<i class="bi bi-trash-fill"></i>'
