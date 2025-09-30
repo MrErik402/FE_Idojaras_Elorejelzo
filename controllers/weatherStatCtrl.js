@@ -31,7 +31,7 @@ async function weatherAdd() {
     const maxField = document.querySelector('#maxField').value; //NUMBER
     const weatherType = document.querySelector('#weatherType').value; //STRING
     const honap = dateField.split('-')[1];
-    if (minField > maxField) {
+    if (Number(minField) > Number(maxField)) {
         showAlert("Figyelmeztetés!", "A minimum érték nem lehet nagyobb mint a maximum érték!", "warning");
         return;
     }
