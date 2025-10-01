@@ -10,9 +10,9 @@ async function getCalendarData() {
 
         weather.forEach(day => {
             eventsList.push(
-                { title: `Típus: ${day.type}`, start: day.date },
-                { title: `Min: ${day.min} °C`, start: day.date, backgroundColor: "green" },
-                { title: `Max: ${day.max} °C`, start: day.date, backgroundColor: "orange" },
+                { title: `Típus: ${day.type}`, start: day.date, backgroundColor: "green", borderColor: "green" },
+                { title: `Min: ${day.min} °C`, start: day.date, backgroundColor: "white", textColor: "black", borderColor:"white" },
+                { title: `Max: ${day.max} °C`, start: day.date, backgroundColor: "red", borderColor: "red" },
 
             )
         });
