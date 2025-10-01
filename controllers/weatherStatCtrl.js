@@ -64,7 +64,6 @@ async function weatherAdd() {
         return;
     }
     if (!(honap == 12 || honap == 1 || honap == 2 || honap == 11 || honap == 3) && weatherType == "snow") { //Ekkor havazhat (hónapokban)
-        alert(honap)
         showAlert("Figyelmeztetés!", "Az általad megadott hónapban nem havazhat!", "info")
         return;
     }

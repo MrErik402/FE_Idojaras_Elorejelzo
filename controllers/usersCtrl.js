@@ -173,6 +173,7 @@ async function userPasswordUpdate() {
       const data = await res.json();
       if(res.status == 200){
           showAlert(data.title, data.message, data.type);
+          render('main')
       }else{
           showAlert(data.title, data.message, data.type)
       }
