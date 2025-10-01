@@ -31,7 +31,7 @@ async function weatherAdd() {
     const maxField = document.querySelector('#maxField').value; //NUMBER
     const weatherType = document.querySelector('#weatherType').value; //STRING
     const honap = dateField.split('-')[1];
-    if (minField > maxField) {
+    if (Number(minField) > Number(maxField)) {
         showAlert("Figyelmeztetés!", "A minimum érték nem lehet nagyobb mint a maximum érték!", "warning");
         return;
     }
@@ -39,27 +39,27 @@ async function weatherAdd() {
         showAlert("Figyelmeztetés!", "Minden adatot meg kell adnod!", "warning");
         return;
     }
-    if ((honap == 12 || honap == 1 || honap == 2) && maxField > 20) { //Ekkor tél van
+    if ((honap == 12 || honap == 1 || honap == 2) && Number(maxField) > 20) { //Ekkor tél van
         showAlert("Figyelmeztetés!", "A megadott maximális hőmérséklet nem felel meg a téli hónapnak megadott követelményeknek!", "info")
         return;
     }
-    if ((honap == 6 || honap == 7 || honap == 8) && minField < 0) { //Ekkor nyár van
+    if ((honap == 6 || honap == 7 || honap == 8) && Number(minField) < 0) { //Ekkor nyár van
         showAlert("Figyelmeztetés!", "Nyáron nem lehet negatív a hőmérséklet!", "info")
         return;
     }
-    if ((honap == 3 || honap == 4 || honap == 5) && minField < -5) { //Ekkor tavasz van
+    if ((honap == 3 || honap == 4 || honap == 5) && Number(minField) < -5) { //Ekkor tavasz van
         showAlert("Figyelmeztetés!", "Tavasszal nem lehet -5°C-nál kevesebb a hőmérséklet!", "info")
         return;
     }
-    if ((honap == 3 || honap == 4 || honap == 5) && maxField > 30) { //Ekkor tavasz van
+    if ((honap == 3 || honap == 4 || honap == 5) && Number(maxField) > 30) { //Ekkor tavasz van
         showAlert("Figyelmeztetés!", "Tavasszal nem lehet 30°C-nál több a hőmérséklet!", "info")
         return;
     }
-    if ((honap == 9 || honap == 10 || honap == 11) && maxField > 35) { //Ekkor ősz van
+    if ((honap == 9 || honap == 10 || honap == 11) && Number(maxField) > 35) { //Ekkor ősz van
         showAlert("Figyelmeztetés!", "Ősszel nem lehet 35°C-nál több a hőmérséklet!", "info")
         return;
     }
-    if ((honap == 9 || honap == 10 || honap == 11) && minField < -5) { //Ekkor ősz van
+    if ((honap == 9 || honap == 10 || honap == 11) && Number(minField) < -5) { //Ekkor ősz van
         showAlert("Figyelmeztetés!", "Ősszel nem lehet -5°C-nál kevesebb a hőmérséklet!", "info")
         return;
     }
@@ -68,7 +68,7 @@ async function weatherAdd() {
         showAlert("Figyelmeztetés!", "Az általad megadott hónapban nem havazhat!", "info")
         return;
     }
-    if (weatherType == "snow" && maxField > 7) { //Ekkor havazik
+    if (weatherType == "snow" && Number(maxField) > 7) { //Ekkor havazik
         showAlert("Figyelmeztetés!", "Havazáskor nem lehet 7°C-nál nagyobb a hőmérséklet", "info")
         return;
     }
